@@ -24,6 +24,6 @@ class Rectangle extends Shape {
 public class Main {
     public static void main(String[] args) {
         Rectangle bentuk = new Rectangle (80,50,"Black");
-        System.out.println("Area of Rectangle:" + bentuk.getArea()  );
+        System.out.println("Area of Rectangle : Width x Height = " + bentuk.getArea()  );
     }
 }
