@@ -34,42 +34,33 @@ public class InfixToPostfix
     public static void main(String argv[]) throws IOException
     {
         String infix;
-//create an input stream object
         BufferedReader keyboard = new BufferedReader (new InputStreamReader(System.in));
-//get input from user
         System.out.print("\nEnter the infix expression you want to convert: ");
         infix = keyboard.readLine();
-//output as postfix
         System.out.println("Postfix expression for the given infix expression is:" + toPostfix(infix));
     }
     private static String toPostfix(String infix)
-//converts an infix expression to postfix
     {
         char symbol;
         String postfix = "";
         for(int i=0;i<infix.length();++i)
-//while there is input to be read
         {
             symbol = infix.charAt(i);
-//if it's an operand, add it to the string
             if (Character.isLetter(symbol))
                 postfix = postfix + symbol;
             else if (symbol=='(')
-//push (
             {
                 operators.push(symbol);
             }
             else if (symbol==')')
-//push everything back to (
             {
                 while (operators.peek() != '(')
                 {
                     postfix = postfix + operators.pop();
                 }
-                operators.pop();        //remove '('
+                operators.pop();     
             }
             else
-//print operators occurring before it that have greater precedence
             {
                 while (!operators.isEmpty() && !(operators.peek()=='(') && prec(symbol) <= prec(operators.peek()))
                     postfix = postfix + operators.pop();
